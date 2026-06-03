@@ -8,7 +8,7 @@
 *{
     margin: 0;
     padding: 0;
-    box-shadow: border-box;
+    box-sizing: border-box;
     font-family: 'Arial Rounded MT Bold', sans-serif;
 }
 
@@ -90,8 +90,8 @@ h1 {
     100% { transform: translateY(-80px) scale(0); opacity: 0; }
 }
 
-/* Escena del duende (oculta al principio) */
-.escena-duende {
+/* Escena del osito final (oculta al principio) */
+.escena-final {
     display: none;
     flex-direction: column;
     align-items: center;
@@ -104,23 +104,35 @@ h1 {
     to { opacity: 1; transform: scale(1); }
 }
 
-.duende {
+.oso-tierno {
     font-size: 110px;
     margin-bottom: 20px;
-    animation: flotarDuende 3s infinite ease-in-out;
+    animation: flotarOso 3s infinite ease-in-out;
 }
 
-@keyframes flotarDuende {
+@keyframes flotarOso {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-15px); }
 }
 
+/* Estilo de letra cambiado para el mensaje final */
 .mensaje-final {
     color: #ffffff;
-    font-size: 1.8rem;
-    line-height: 1.5;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-    max-width: 400px;
+    font-family: 'Georgia', 'Times New Roman', serif; /* Estilo de letra más elegante y romántico */
+    font-style: italic;
+    font-size: 1.9rem;
+    line-height: 1.6;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.15);
+    max-width: 500px;
+}
+
+.texto-destacado {
+    font-family: 'Arial Rounded MT Bold', sans-serif;
+    font-style: normal;
+    font-size: 2rem;
+    display: block;
+    margin-top: 15px;
+    letter-spacing: 0.5px;
 }
 
 /* Lluvia de corazones de fondo */
@@ -146,29 +158,29 @@ h1 {
     <div class="contenedor-principal">
         
         <!-- Vista 1: Ositos dándose besos -->
-        <div class="escena-ositos" id="bloqueOsitos" onclick="mostrarDuende()">
+        <div class="escena-ositos" id="bloqueOsitos" onclick="mostrarFinal()">
             <div class="oso-blanco">🐻‍❄️</div>
             <div class="corazon-beso">💖</div>
             <div class="oso-marron">🐻</div>
         </div>
 
-        <!-- Vista 2: El duende bonito (Oculto) -->
-        <div class="escena-duende" id="bloqueDuende">
-            <div class="duende">🧝✨</div>
+        <!-- Vista 2: El osito bonito y tierno -->
+        <div class="escena-final" id="bloqueFinal">
+            <div class="oso-tierno">🐼❤️</div>
             <div class="mensaje-final">
-                Te mando un buen abrazo y muchos besos.<br>
-                <b>Love u, preciosa. Siempre tuya</b>
+                Te mando un mega abrazo mi amor y muchísimos besos.<br>
+                <span class="texto-destacado"><b>Love u, preciosa. Siempre tuya</b></span>
             </div>
         </div>
 
     </div>
 
 <script>
-// Crear corazones flotando de fondo de manera automática
+// Crear corazones y fresas flotando de fondo
 for(let i=0; i<40; i++){
     let corazon = document.createElement("div");
     corazon.classList.add("lluvia-corazon");
-    corazon.innerHTML = ["❤️","💖","🍓","💕"][Math.floor(Math.random()*4)];
+    corazon.innerHTML = ["❤️","💖","🍓","✨"][Math.floor(Math.random()*4)];
     corazon.style.left = Math.random()*100 + "vw";
     corazon.style.fontSize = (15 + Math.random()*25) + "px";
     corazon.style.animationDuration = (5 + Math.random()*6) + "s";
@@ -176,11 +188,11 @@ for(let i=0; i<40; i++){
     document.body.appendChild(corazon);
 }
 
-// Función que cambia los ositos por el duende al hacer click
-function mostrarDuende() {
+// Función que cambia de escena al hacer click
+function mostrarFinal() {
     document.getElementById("bloqueOsitos").style.display = "none";
     document.getElementById("titulo").style.display = "none";
-    document.getElementById("bloqueDuende").style.display = "flex";
+    document.getElementById("bloqueFinal").style.display = "flex";
 }
 </script>
 </body>
